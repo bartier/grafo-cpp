@@ -19,22 +19,22 @@ void Grafo<T>::adicionarVertice(T vertice) {
     this->indicesDosVertices->insert(par);
 }
 
-//template<typename T>
-//void Grafo<T>::removerVertice(T vertice) {
-//
-//}
-//
-//template<typename T>
-//void Grafo<T>::adicionarAresta(T v1, T v2) {
-//
-//}
-//
-//template<typename T>
-//void Grafo<T>::removerAresta(T v1, T v2) {
-//
-//}
-//
-//template<class U>
-//std::ostream &operator<<(std::ostream & os, Grafo<U> grafo) {
-//    return os;
-//}
+template<typename T>
+void Grafo<T>::removerVertice(T vertice) {
+    throw "implementa ae";
+}
+
+template<typename T>
+void Grafo<T>::adicionarAresta(T v1, T v2) {
+    throw "implementa ae";
+}
+
+template<typename T>
+void Grafo<T>::removerAresta(T v1, T v2) {
+    throw "implementa ae";
+}
+
+template<class U>
+std::ostream &operator<<(std::ostream & os, Grafo<U> grafo) {
+    return os << "implementa ae";
+}

@@ -1,6 +1,6 @@
 template<typename T>
 Grafo<T>::Grafo(TipoGrafo tipo) {
-    this->arestas = new MatrizEsparsa<int>(-1);
+    this->arestas = new MatrizEsparsa<int>(10, 10, -1);
     this->indicesDosVertices = new std::map<T, int>();
 
     this->tipo = tipo;
@@ -21,7 +21,14 @@ void Grafo<T>::adicionarVertice(T vertice) {
 
 template<typename T>
 void Grafo<T>::removerVertice(T vertice) {
+    auto parVerticeIndice = this->indicesDosVertices->find(vertice);
+    int linha = parVerticeIndice->second;
+
     this->indicesDosVertices->erase(vertice);
+
+    for (int i = 0; i < 10; ++i) { // 100 posicoes fixas na matriz (limite de 100 vertices)
+        this->arestas->set(linha, i, -1);
+    }
 }
 
 template<typename T>

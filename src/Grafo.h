@@ -18,8 +18,8 @@ public:
     void adicionarVertice(T vertice);
     void removerVertice(T vertice);
 
-    void adicionarAresta(T v1, T v2);
-    void removerAresta(T v1, T v2);
+    void adicionarAresta(T origem, T destino, int peso);
+    void removerAresta(T origem, T destino);
 
     template <class U>
     friend std::ostream& operator<<(std::ostream& os, Grafo<U> grafo);

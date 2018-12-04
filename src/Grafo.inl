@@ -21,20 +21,50 @@ void Grafo<T>::adicionarVertice(T vertice) {
 
 template<typename T>
 void Grafo<T>::removerVertice(T vertice) {
-    throw "implementa ae";
+    this->indicesDosVertices->erase(vertice);
 }
 
 template<typename T>
-void Grafo<T>::adicionarAresta(T v1, T v2) {
-    throw "implementa ae";
+void Grafo<T>::adicionarAresta(T origem, T destino, int peso) {
+    auto origemIterator = this->indicesDosVertices->find(origem);
+    auto destinoIterator = this->indicesDosVertices->find(destino);
+
+    if (origemIterator != this->indicesDosVertices->end() && destinoIterator != this->indicesDosVertices->end()) {
+        this->arestas->set(origemIterator->second, destinoIterator->second, peso);
+
+        if (this->tipo == NAO_DIRIGIDO) { // o peso do caminho de IDA  eh o mesmo do de VOLTA
+            this->arestas->set(destinoIterator->second, origemIterator->second, peso);
+        }
+    } else {
+        throw std::invalid_argument("Par de vertices invalidos para adicionar aresta");
+    }
 }
 
 template<typename T>
-void Grafo<T>::removerAresta(T v1, T v2) {
-    throw "implementa ae";
+void Grafo<T>::removerAresta(T origem, T destino) {
+    auto origemIterator = this->indicesDosVertices->find(origem);
+    auto destinoIterator = this->indicesDosVertices->find(destino);
+
+    if (origemIterator != this->indicesDosVertices.end() && destinoIterator != this->indicesDosVertices.end()) {
+        this->arestas->set(origemIterator->second, destinoIterator->second, -1); // -1 eh valorPadrao na matriz
+
+        if (this->tipo == NAO_DIRIGIDO) {
+            this->arestas->set(destinoIterator->second, origemIterator->second, -1); // -1 eh valorPadrao na matriz
+        }
+    } else {
+        throw std::invalid_argument("Par de vertices invalidos para remover aresta");
+    }
 }
 
 template<class U>
 std::ostream &operator<<(std::ostream & os, Grafo<U> grafo) {
-    return os << "implementa ae";
+    os << "Vertices: {" << std::endl;
+
+    for (auto it = grafo.indicesDosVertices->begin(); it != grafo.indicesDosVertices->end(); ++it)
+        os << "  " << it->first << ": " << it->second << std::endl;
+
+    os << "}" << std::endl;
+
+    auto matrizDeArestas = grafo.arestas;
+    os << "Matriz de arestas: " << *matrizDeArestas << std::endl;
 }

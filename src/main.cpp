@@ -24,6 +24,7 @@ int main() {
     //meuGrafo->adicionarAresta('D', 'C'); // lançar excessão quando grafo é DIRIGIDO
     cout << *meuGrafo << endl;
     // remover os vertices
+
     meuGrafo->removerVertice('A');
     meuGrafo->removerVertice('B');
     meuGrafo->removerVertice('C');
